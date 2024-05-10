@@ -13,6 +13,8 @@ router.post(
   auth(USER_ROLE.user, USER_ROLE.admin),
   RoomController.checkInDate,
 );
+
+//issue with check-out
 router.post(
   '/check-out',
   auth(USER_ROLE.user, USER_ROLE.admin),

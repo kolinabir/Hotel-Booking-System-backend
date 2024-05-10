@@ -54,7 +54,7 @@ const checkOutDate = async (roomId: string, checkOut: Date, userId: string) => {
   }
   const room = await Room.findByIdAndUpdate(
     { _id: roomId },
-    { checkOut: checkOut },
+    { isBooked: false },
     { new: true },
   );
   const bookList = {
@@ -62,11 +62,12 @@ const checkOutDate = async (roomId: string, checkOut: Date, userId: string) => {
     bookedAt: room?.bookedAt,
     bookedFor: room?.bookedFor,
     checkIn: room?.checkIn,
-    checkOut: room?.checkOut,
+    checkOut: checkOut,
   };
+  console.log(bookList);
   const updatedRoom = await Room.findByIdAndUpdate(
     { _id: roomId },
-    { $push: { bookingHistory: bookList } },
+    { $push: { bookList: bookList }, bookedAt: null, bookedBy: null },
     { new: true },
   );
 
