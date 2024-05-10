@@ -10,6 +10,7 @@ import config from '../../config';
 import AppError from '../../middlewares/Errors/AppError';
 
 const loginUser = async (payload: TLoginUser) => {
+  console.log(payload, 'payload');
   //check if user exists in database
   const userExists = await User.findOne({ userId: payload?.userId }).select(
     '+password',
@@ -23,6 +24,7 @@ const loginUser = async (payload: TLoginUser) => {
   const token = jwt.sign(
     {
       userId: userExists.userId,
+      _id: userExists._id,
       email: userExists.email,
       role: userExists.role,
       iat: Date.now(),

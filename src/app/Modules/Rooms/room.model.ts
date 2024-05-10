@@ -1,5 +1,24 @@
 import { Schema, model } from 'mongoose';
-import { TRoom } from './room.interface';
+import { TBookList, TRoom } from './room.interface';
+
+const bookListSchema = new Schema<TBookList>({
+  bookedBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  bookedAt: {
+    type: Date,
+  },
+  bookedFor: {
+    type: String,
+  },
+  checkIn: {
+    type: Date,
+  },
+  checkOut: {
+    type: Date,
+  },
+});
 
 const roomSchema = new Schema<TRoom>({
   name: {
@@ -43,13 +62,25 @@ const roomSchema = new Schema<TRoom>({
   isBooked: {
     type: Boolean,
     required: true,
+    default: false,
   },
   bookedBy: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'User',
   },
   bookedAt: {
     type: Date,
   },
+  bookedFor: {
+    type: String,
+  },
+  checkIn: {
+    type: Date,
+  },
+  checkOut: {
+    type: Date,
+  },
+  bookList: [bookListSchema],
 });
 
 export const Room = model<TRoom>('Room', roomSchema);
