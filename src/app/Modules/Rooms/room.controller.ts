@@ -48,10 +48,10 @@ const checkInDate = catchAsync(async (req, res) => {
 });
 const checkOutDate = catchAsync(async (req, res) => {
   const userId = req.user.role === 'user' ? req.user._id : null;
-  const result = await RoomService.checkInDate(
+  const result = await RoomService.checkOutDate(
     req.body.roomId,
     req.body.checkOut,
-    userId,
+    userId || null,
   );
   sendResponse(res, {
     statusCode: httpStatus.OK,

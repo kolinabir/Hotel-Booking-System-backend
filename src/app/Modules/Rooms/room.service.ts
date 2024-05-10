@@ -64,10 +64,14 @@ const checkOutDate = async (roomId: string, checkOut: Date, userId: string) => {
     checkIn: room?.checkIn,
     checkOut: checkOut,
   };
-  console.log(bookList);
   const updatedRoom = await Room.findByIdAndUpdate(
     { _id: roomId },
-    { $push: { bookList: bookList }, bookedAt: null, bookedBy: null },
+    {
+      $push: { bookList: bookList },
+      bookedAt: null,
+      bookedBy: null,
+      checkIn: null,
+    },
     { new: true },
   );
 
