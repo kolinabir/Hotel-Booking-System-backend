@@ -3,6 +3,13 @@ for running the project you need to have python3 and pip installed on your machi
 ```bash
 npm install
 ```
+to connect mongodb you need to add the connection string in the server.js file in
+await mongoose.connect("");
+
+you can use .env also for the connection string
+
+```bash
+
 
 to start the server
 
