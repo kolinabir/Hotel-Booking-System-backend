@@ -3,7 +3,7 @@ import { TUser, UserModel } from './user.interface';
 import bcrypt from 'bcrypt';
 import config from '../../config';
 
-const userSchema = new Schema<TUser, UserModel>({
+export const userSchema = new Schema<TUser, UserModel>({
   userId: {
     type: String,
     required: true,
