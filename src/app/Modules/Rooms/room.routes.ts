@@ -76,6 +76,7 @@ router.get('/', RoomController.getAvailableRooms);
  *       '500':
  *         description: Internal server error
  */
+
 router.post('/', auth(USER_ROLE.admin), RoomController.addNewRoom);
 /**
  * @swagger
@@ -209,7 +210,6 @@ router.post(
   auth(USER_ROLE.user, USER_ROLE.admin),
   RoomController.checkOutDate,
 );
-
 /**
  * @swagger
  * /rooms/cancel-booking:
