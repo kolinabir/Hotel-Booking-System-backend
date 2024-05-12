@@ -9,7 +9,9 @@ let server: Server;
 const apps = express();
 async function main() {
   try {
-    await mongoose.connect(config.database_url as string);
+    await mongoose.connect(
+      'mongodb+srv://blog:O9Nqn7VLHrO4Z0vk@cluster0.z0ckcxg.mongodb.net/hotel-manage?retryWrites=true&w=majority&appName=Cluster0',  //just for testing
+    );
     server = app.listen(config.port, () => {
       swaggerDocs(apps);
       console.log(`app is listening on port ${config.port}`);
