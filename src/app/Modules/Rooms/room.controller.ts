@@ -61,10 +61,22 @@ const checkOutDate = catchAsync(async (req, res) => {
   });
 });
 
+const cancelBooking = catchAsync(async (req, res) => {
+  const userId = req.user.role === 'user' ? req.user._id : null;
+  const result = await RoomService.cancelBooking(req.body.roomId, userId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Booking cancelled successfully',
+    data: result,
+  });
+});
+
 export const RoomController = {
   addNewRoom,
   getAvailableRooms,
   bookARoom,
   checkInDate,
   checkOutDate,
+  cancelBooking,
 };

@@ -78,10 +78,32 @@ const checkOutDate = async (roomId: string, checkOut: Date, userId: string) => {
   return updatedRoom;
 };
 
+const cancelBooking = async (roomId: string, userId: string) => {
+  if (userId !== null) {
+    const checkRoom = await Room.findOne({ _id: roomId });
+    if (!checkRoom) {
+      throw new Error('Room not found');
+    }
+  }
+  const room = await Room.findByIdAndUpdate(
+    { _id: roomId },
+    {
+      isBooked: false,
+      bookedBy: null,
+      bookedAt: null,
+      checkIn: null,
+      checkOut: null,
+    },
+    { new: true },
+  );
+  return room;
+};
+
 export const RoomService = {
   addNewRoom,
   getAvailableRooms,
   bookARoom,
   checkInDate,
   checkOutDate,
+  cancelBooking,
 };

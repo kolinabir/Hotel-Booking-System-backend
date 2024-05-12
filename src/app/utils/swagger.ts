@@ -163,7 +163,20 @@ export const options: swaggerJsdoc.Options = {
     ],
     components: {
       schemas: { UserSchema, RoomSchema },
+      securitySchemes: {
+        ApiKeyAuth: {
+          type: 'apiKey',
+          in: 'header',
+          name: 'Authorization',
+          description: 'Generate token from /auth/login',
+        },
+      },
     },
+    security: [
+      {
+        ApiKeyAuth: [],
+      },
+    ],
   },
   apis: ['src/app/routes/index.ts', 'src/app/Modules/**/*.ts'],
 };
