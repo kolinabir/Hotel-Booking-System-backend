@@ -32,3 +32,9 @@ swagger documentation visit
 
 for postman collection visit
 [postman collection](https://documenter.getpostman.com/view/27392607/2sA3JNaLLf)
+
+
+
+
+live server link
+[server](https://https://hotel-booking-system-backend.vercel.app/)

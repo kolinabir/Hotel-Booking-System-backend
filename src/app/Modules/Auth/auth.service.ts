@@ -35,8 +35,7 @@ const loginUser = async (payload: TLoginUser) => {
     },
   );
 
-  const { password, createdAt, updatedAt, __v, ...user } =
-    userExists.toObject();
+  const { password, ...user } = userExists.toObject();
   return {
     user: user,
     token,
