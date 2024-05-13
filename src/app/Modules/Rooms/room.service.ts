@@ -2,7 +2,11 @@ import { User } from '../User/user.model';
 import { TRoom } from './room.interface';
 import { Room } from './room.model';
 
-const addNewRoom = async (payload: TRoom) => {
+const addNewRoom = async (payload: TRoom, userId: string) => {
+  const user = await User.findOne({ userId: userId, role: 'admin' });
+  if (!user) {
+    throw new Error('You are not authorized to add a room!!');
+  }
   const newRoom = await Room.create(payload);
   return newRoom;
 };
@@ -32,6 +36,10 @@ const bookARoom = async (roomId: string, userId: string) => {
 const checkInDate = async (roomId: string, checkIn: Date, userId: string) => {
   //check if the user booked the room
   if (userId !== null) {
+    const user = await User.findOne({ userId: userId });
+    if (!user) {
+      throw new Error('User not found');
+    }
     const checkRoom = await Room.findOne({ _id: roomId, bookedBy: userId });
     if (!checkRoom) {
       throw new Error('Room not found');
@@ -47,6 +55,10 @@ const checkInDate = async (roomId: string, checkIn: Date, userId: string) => {
 
 const checkOutDate = async (roomId: string, checkOut: Date, userId: string) => {
   if (userId !== null) {
+    const user = await User.findOne({ userId: userId });
+    if (!user) {
+      throw new Error('User not found');
+    }
     const checkRoom = await Room.findOne({ _id: roomId, bookedBy: userId });
     if (!checkRoom) {
       throw new Error('Room not found');
@@ -80,6 +92,10 @@ const checkOutDate = async (roomId: string, checkOut: Date, userId: string) => {
 
 const cancelBooking = async (roomId: string, userId: string) => {
   if (userId !== null) {
+    const user = await User.findOne({ userId: userId });
+    if (!user) {
+      throw new Error('User not found');
+    }
     const checkRoom = await Room.findOne({ _id: roomId });
     if (!checkRoom) {
       throw new Error('Room not found');

@@ -4,7 +4,9 @@ import sendResponse from '../../utils/sendRespone';
 import { RoomService } from './room.service';
 
 const addNewRoom = catchAsync(async (req, res) => {
-  const result = await RoomService.addNewRoom(req.body);
+  //check if user is admin and user is found
+
+  const result = await RoomService.addNewRoom(req.body, req.user.userId);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

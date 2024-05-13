@@ -3,19 +3,20 @@ for running the project you need to have python3 and pip installed on your machi
 ```bash
 npm install
 ```
+
 to connect mongodb you need to add the connection string in the server.js file in
 await mongoose.connect("");
 
 you can use .env also for the connection string
 
-```bash
+````bash
 
 
 to start the server
 
 ```bash
 npm run dev
-```
+````
 
 for setup docker
 
@@ -33,8 +34,19 @@ swagger documentation visit
 for postman collection visit
 [postman collection](https://documenter.getpostman.com/view/27392607/2sA3JNaLLf)
 
-
-
-
 live server link
-[server](https://https://hotel-booking-system-backend.vercel.app/)
+[server](https://hotel-booking-system-backend.vercel.app/)
+
+demo login credentials for the live server
+for admin
+`{
+    "userId": "admin",
+    "password": "admin1245"
+}`
+for normal user
+`{
+    "userId": "user",
+    "password": "user12345"
+}`
+
+```
