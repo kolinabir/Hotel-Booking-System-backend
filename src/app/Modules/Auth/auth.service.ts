@@ -10,7 +10,6 @@ import config from '../../config';
 import AppError from '../../middlewares/Errors/AppError';
 
 const loginUser = async (payload: TLoginUser) => {
-  console.log(payload, 'payload');
   //check if user exists in database
   const userExists = await User.findOne({ userId: payload?.userId }).select(
     '+password',
@@ -49,7 +48,6 @@ const changePasswordToServer = async (
   const userExists = await User.findOne({ userId: user.userId }).select(
     '+password',
   );
-  console.log(userExists, 'userExists');
   if (!userExists) {
     throw new AppError(httpStatus.NOT_FOUND, 'This User not found');
   }
